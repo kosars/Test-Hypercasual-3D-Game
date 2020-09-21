@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 611712601797541443}
   - component: {fileID: 598183377385896822}
   - component: {fileID: 4813948640604512073}
+  - component: {fileID: 7071824186426128260}
   - component: {fileID: 7277036405984407878}
-  - component: {fileID: 6288286405164008351}
   m_Layer: 0
   m_Name: Cube_Star
   m_TagString: NotDestroy
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 377439e02fce29a44805f1e664896b53, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -83,6 +83,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &7071824186426128260
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9141054950124247716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b1c71eb035999049b7e01d8caa28c7b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  m_Rigidbody: {fileID: 7277036405984407878}
 --- !u!54 &7277036405984407878
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -99,15 +113,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6288286405164008351
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9141054950124247716}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 416aef809c50289459719fd04cdce3fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
