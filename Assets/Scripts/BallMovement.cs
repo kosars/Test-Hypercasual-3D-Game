@@ -3,64 +3,69 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class BallMovement : MonoBehaviour
-{
-    public int switchScripts = 0;
+{ 
     float moveSpeed = 5f;
     float rotateSpeed = 90f;
     float rotationRadius = 2f;
-    float rotateAngle = 0f;
-    
-    Rigidbody m_Rigidbody;
-    Transform m_Transform;
+    float rotationSpeed = 5f;
+    float rotateDirection = 0f;
+    float currAngle = (Mathf.PI/2) * Mathf.Rad2Deg;
 
-    Vector3 m_Movement;
+    Rigidbody m_Rigidbody;
+    public Transform m_Transform;
+
+    Vector2 circlePosition;
 
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
-        m_Transform = GetComponent<Transform>();
-
+        if (null == m_Transform)
+            m_Transform = GetComponent<Transform>();
     }
 
 
     void FixedUpdate()
     {
-        EndlessMoveForward();
-
-        RotateAroundCylinder();
+        CirclePositionUpdate();
+        MoveBall();
 
         Debug.DrawLine(m_Rigidbody.position, Vector3.forward * m_Rigidbody.position.z, Color.red);
+        Debug.DrawLine(Vector3.up * 2, Vector3.forward * m_Rigidbody.position.z, Color.green);
+
+
     }
 
-    void EndlessMoveForward()
+    void MoveBall()
     {
-        m_Rigidbody.MovePosition(m_Rigidbody.position + (Vector3.forward * moveSpeed * Time.deltaTime));
+        Vector3 pos = new Vector3(
+            circlePosition.x,
+            circlePosition.y,
+            m_Rigidbody.position.z + moveSpeed * Time.deltaTime);
+        m_Rigidbody.MovePosition(pos);
+
+        float angle = Mathf.Acos(m_Rigidbody.position.x / rotationRadius) * Mathf.Rad2Deg;
+        if (m_Rigidbody.position.y < 0) //invert angle for all negative Y positions
+            angle = -angle;
+        Quaternion rot = Quaternion.Euler(0f, 0f, angle - 90);
+        m_Rigidbody.MoveRotation(rot);
+
     }
 
     void RotateAroundCylinder()
     {
-        m_Transform.RotateAround(Vector3.zero, Vector3.forward, rotateAngle * rotateSpeed * Time.deltaTime);
+        m_Transform.RotateAround(Vector3.zero, Vector3.forward, rotateDirection * rotateSpeed * Time.deltaTime);
     }
-    void Movement(Rigidbody rb)
+    private void CirclePositionUpdate()
     {
-        if(RotateDirection != 0)
-        {
-            Vector3 centerPos = Vector3.forward * rb.position.z;
-            Vector3 gravityVector = centerPos - rb.position;
-            Debug.Log("(rb.position = " + rb.position + " )");
-            Vector3 newDirection = Vector3.Cross(gravityVector, Vector3.forward);
-            Debug.Log("newDirection = " + newDirection);
-            newDirection = newDirection.normalized;
-            Debug.Log("newDirection normalized = " + newDirection);
-            newDirection *= RotateDirection * rotationRadius;
-            rb.velocity = newDirection;
-            Debug.Log("velocity = " + rb.velocity);
-        }
-        
+        currAngle += -RotateDirection * rotationSpeed * Time.deltaTime; 
+        float x = Mathf.Cos(currAngle) * rotationRadius;
+        float y = Mathf.Sin(currAngle) * rotationRadius;
+
+        circlePosition = new Vector3(x, y, 0f);
     }
     public float RotateDirection
     {
-        get { return this.rotateAngle; }
-        set { this.rotateAngle = value; }
+        get { return this.rotateDirection; }
+        set { this.rotateDirection = value; }
     }
 }

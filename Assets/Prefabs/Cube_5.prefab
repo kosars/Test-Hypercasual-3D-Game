@@ -742,11 +742,11 @@ PrefabInstance:
     - target: {fileID: 2237875181355323111, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d9e746f97cb72394b8f811e3431ed336, type: 2}
     - target: {fileID: 2379767254291603708, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d9e746f97cb72394b8f811e3431ed336, type: 2}
     - target: {fileID: 2640075204407571836, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -810,7 +810,7 @@ PrefabInstance:
     - target: {fileID: 4741587100656376926, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d9e746f97cb72394b8f811e3431ed336, type: 2}
     - target: {fileID: 4784618686872605881, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -834,7 +834,7 @@ PrefabInstance:
     - target: {fileID: 5665872217347138827, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d9e746f97cb72394b8f811e3431ed336, type: 2}
     - target: {fileID: 6603295413897638629, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -842,7 +842,7 @@ PrefabInstance:
     - target: {fileID: 7086195810837770988, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2100000, guid: d9e746f97cb72394b8f811e3431ed336, type: 2}
     - target: {fileID: 7132948143788149392, guid: 022d39dc5b5f1e24fb579c9fb3061d93, type: 3}
       propertyPath: m_Name
       value: CubePlate_5

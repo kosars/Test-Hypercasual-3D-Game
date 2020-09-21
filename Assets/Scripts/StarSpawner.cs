@@ -5,6 +5,6 @@ using UnityEngine;
 public class StarSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject starPrefab;
-    [SerializeField] private List<Vector3> starPiecesPos;
+    [SerializeField] private List<Transform> starPiecesPos;
     
 }
