@@ -7,6 +7,8 @@ public class EndOfLevel : MonoBehaviour
     public GameObject star;
     public GameObject piece;
     public GameMenu m_GameMenu;
+    public Score m_Score;
+
 
     private int starsCount;
     private Transform cameraTransform;
@@ -24,6 +26,7 @@ public class EndOfLevel : MonoBehaviour
     {
         getFigure(star);
         m_GameMenu = GameObject.Find("Canvas").GetComponent<GameMenu>();
+        m_Score = GameObject.Find("Score").GetComponent<Score>();
     }
 
     private void OnTriggerEnter(Collider other)
@@ -39,6 +42,7 @@ public class EndOfLevel : MonoBehaviour
         m_GameMenu.EndGame();
 
         GameObject ball = GameObject.Find("Ball");
+        ball.GetComponent<BallEnergy>().enabled = false;
         foreach (Transform transform in ball.transform)
             transform.SetParent(null, true);
         cameraTransform = GameObject.Find("Main Camera").transform;
@@ -47,7 +51,7 @@ public class EndOfLevel : MonoBehaviour
         cameraTransform.rotation = quaternion;
 
         starSpawnpoint = GameObject.Find("BlowingPoint").transform.position;
-        starsCount = GameObject.Find("Score").GetComponent<Score>().CountStars();
+        starsCount = m_Score.CountStars();
          
         StartCoroutine(spawnStars());
     }

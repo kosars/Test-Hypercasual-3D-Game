@@ -19,8 +19,6 @@ public class LevelGenerator : MonoBehaviour
 
     private void Awake()
     {
-        /*m_Transform = GameObject.Find("Ball").GetComponent<Transform>();
-        spawnHight = m_Transform.position.y;*/
         SpawnSingle(0, lastSpawnPosition + spawnOffset);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 25f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 50f);
@@ -31,8 +29,10 @@ public class LevelGenerator : MonoBehaviour
         SpawnCircleRow(1, 4, lastSpawnPosition + spawnOffset, 0f, 30f);
         SpawnRow(0, 5, lastSpawnPosition + spawnOffset);
         SpawnRow(0, 5, lastSpawnPosition + spawnOffset, 30f, 15f);
-        GameObject.Find("Score").GetComponent<Score>().TargetScore = targetScore;
+
         SpawnTrigger(endOfLevel, lastSpawnPosition + spawnOffset);
+
+        Score.TargetScore = targetScore;
     }
 
     private void SpawnObject(int index, float zPosition)

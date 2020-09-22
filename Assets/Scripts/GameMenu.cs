@@ -6,7 +6,9 @@ public class GameMenu : MonoBehaviour
     [SerializeField] public GameObject startMenuUI;
     [SerializeField] public GameObject restartMenuUI;
     [SerializeField] public GameObject endMenuUI;
+    [SerializeField] public GameObject multiplierUI;
     [SerializeField] public Score m_Score;
+
 
     private void Awake() => PauseGame();
 

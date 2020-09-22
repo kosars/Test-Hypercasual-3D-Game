@@ -4928,7 +4928,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ace7f3d32ef74d5448fb3e125f95e904, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Score: {fileID: 0}
 --- !u!1 &1784730273308347069
 GameObject:
   m_ObjectHideFlags: 0
@@ -4944,6 +4943,7 @@ GameObject:
   - component: {fileID: 1784730273308347067}
   - component: {fileID: 1784730273308347079}
   - component: {fileID: 7006188546489213694}
+  - component: {fileID: 1289270946070745370}
   m_Layer: 0
   m_Name: Ball
   m_TagString: NotDestroy
@@ -5060,6 +5060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 949f20eb6cd818244845b0f3a56b20b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Multiplier: {fileID: 0}
   m_Transform: {fileID: 1784730273308347068}
 --- !u!114 &7006188546489213694
 MonoBehaviour:
@@ -5075,7 +5076,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beam: {fileID: 1029067796173031740}
   fire: {fileID: 1464201760857674233}
+  m_Multiplier: {fileID: 0}
+  m_BallEnergy: {fileID: 0}
   m_GameMenu: {fileID: 0}
+--- !u!114 &1289270946070745370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784730273308347069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 829517bd11cc3b740ac489ea7af4bc0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1784730273388724520
 GameObject:
   m_ObjectHideFlags: 0

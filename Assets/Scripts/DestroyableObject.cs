@@ -1,8 +1,17 @@
 ﻿using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class DestroyableObject : MonoBehaviour
 {
+    [SerializeField] private Multiplier m_Multiplier;
+    [SerializeField] private Score m_Score;
+    [SerializeField] private BallEnergy m_BallEnergy;
+    [SerializeField] private GameObject scoreText;
+
+
+
+
     [SerializeField]
     private Transform colletor;
     [SerializeField]
@@ -17,6 +26,13 @@ public class DestroyableObject : MonoBehaviour
     {
         if (null == colletor)
             colletor = GameObject.Find("BlowingPoint").GetComponent<Transform>();
+        if (null == m_Multiplier)
+            m_Multiplier = GameObject.Find("Multiplier").GetComponent<Multiplier>();
+        if (null == m_Score)
+            m_Score = GameObject.Find("Score").GetComponent<Score>();
+        if (null == m_BallEnergy)
+            m_BallEnergy = GameObject.Find("Ball").GetComponent<BallEnergy>();
+        scoreText.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -41,6 +57,13 @@ public class DestroyableObject : MonoBehaviour
         if (!(other.gameObject.name == "Ball"))
             return;
         isTriggered = true;
+
+        scoreText.SetActive(true);
+        scoreText.GetComponent<TextMeshPro>().text = (100 * m_Multiplier.multiplier).ToString();
+        m_Score.AddScore(100);
+        m_Multiplier.multiplier += 0.1f;
+        m_BallEnergy.UpEnergy(0.5f);
+
     }
 
     private void CollectChildRBRecursive(GameObject obj)
