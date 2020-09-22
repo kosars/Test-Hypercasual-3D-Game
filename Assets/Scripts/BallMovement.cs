@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BallMovement : MonoBehaviour
 { 
-    float moveSpeed = 5f;
+    [SerializeField] public static float moveSpeed = 10f;
     float rotateSpeed = 90f;
     float rotationRadius = 2f;
     float rotationSpeed = 5f;

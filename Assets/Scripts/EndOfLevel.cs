@@ -8,13 +8,14 @@ public class EndOfLevel : MonoBehaviour
     public GameObject piece;
     private GameMenu m_GameMenu;
     private int starsCount;
+    private Transform cameraTransform;
     private bool isEnd;
     private Vector3 starSpawnpoint;
     private Vector3[] starsCoords = new Vector3[3]
     {
-    new Vector3(-2f, 3f, 10f),
-    new Vector3(0.0f, 4f, 10f),
-    new Vector3(2f, 3f, 10f)
+        new Vector3(-2f, 7f, 12f),
+        new Vector3(0f, 8f, 12f),
+        new Vector3(2f, 7f, 12f)
     };
     private Vector3[] starPieceCoords;
 
@@ -35,51 +36,59 @@ public class EndOfLevel : MonoBehaviour
     {
         isEnd = true;
         m_GameMenu.EndGame();
-        GameObject gameObject = GameObject.Find("Ball");
-        starSpawnpoint = GameObject.Find("BlowingPoint").transform.position;
-        foreach (Transform transform in gameObject.transform)
-            transform.SetParent((Transform)null, true);
-        Transform transform1 = GameObject.Find("Main Camera").transform;
-        transform1.position = new Vector3(0.0f, 10f, transform1.position.z);
+
+        GameObject ball = GameObject.Find("Ball");
+        foreach (Transform transform in ball.transform)
+            transform.SetParent(null, true);
+        cameraTransform = GameObject.Find("Main Camera").transform;
+        cameraTransform.position = new Vector3(0.0f, 10f, cameraTransform.position.z);
         Quaternion quaternion = Quaternion.Euler(20f, 0.0f, 0.0f);
-        transform1.rotation = quaternion;
+        cameraTransform.rotation = quaternion;
+
+        starSpawnpoint = GameObject.Find("BlowingPoint").transform.position;
         starsCount = GameObject.Find("Score").GetComponent<Score>().CountStars();
-        for (int index = 0; index < starsCoords.Length && index < starsCount; ++index)
-            StartCoroutine(spawnStar(starsCoords[index]));
+         
+        StartCoroutine(spawnStars());
     }
 
-    private void Update()
+    /*private void Update()
     {
         int num = isEnd ? 1 : 0;
-    }
+    }*/
 
     private void getFigure(GameObject parent)
     {
         List<Vector3> vector3List = new List<Vector3>();
-        if ((Object)parent == (Object)null)
+        if (parent == null)
             return;
         foreach (Transform transform in parent.transform)
         {
-            if ((Object)null == (Object)transform)
+            if (null == transform)
                 return;
             vector3List.Add(transform.gameObject.transform.position);
         }
         starPieceCoords = vector3List.ToArray();
     }
-
-    private IEnumerator spawnStar(Vector3 starCoords)
+    private IEnumerator spawnStars()
     {
-        EndOfLevel endOfLevel = this;
-        Vector3[] vector3Array = endOfLevel.starPieceCoords;
-        for (int index = 0; index < vector3Array.Length; ++index)
+        for (int index = 0; index < starsCoords.Length && index < starsCount; ++index)
         {
-            Vector3 vector3 = vector3Array[index];
-            Quaternion rotation = Quaternion.Euler(Vector3.forward);
-            GameObject gameObject = Object.Instantiate<GameObject>(endOfLevel.piece, endOfLevel.starSpawnpoint, rotation);
-            gameObject.transform.parent = endOfLevel.gameObject.transform;
-            gameObject.GetComponent<StarPiece>().moveTo = vector3 + starCoords + endOfLevel.starSpawnpoint;
-            yield return (object)new WaitForSeconds(0.05f);
+            StartCoroutine(spawnStarPieces(starsCoords[index]));
+            yield return new WaitForSeconds(1f);
         }
-        vector3Array = (Vector3[])null;
+    }
+
+    private IEnumerator spawnStarPieces(Vector3 starCoords)
+    { 
+        for (int index = 0; index < starPieceCoords.Length; ++index)
+        {
+            Vector3 vector3 = starPieceCoords[index];
+            Quaternion rotation = Quaternion.Euler(Vector3.forward);
+            GameObject gameObject = Instantiate(piece,starSpawnpoint, rotation);
+
+            gameObject.GetComponent<StarPiece>().moveTo = vector3 + starCoords + Vector3.forward * cameraTransform.position.z;
+            gameObject.transform.parent = this.gameObject.transform;
+            yield return new WaitForSeconds(0.01f);
+        }
     }
 }

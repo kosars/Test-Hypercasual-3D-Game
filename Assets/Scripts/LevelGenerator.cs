@@ -9,7 +9,7 @@ public class LevelGenerator : MonoBehaviour
     public GameObject endOfLevel;
 
     private float spawnHight;
-    private float spawnOffset = 5f;
+    private float spawnOffset = BallMovement.moveSpeed;
     private float lastSpawnPosition;
     private int targetScore;
     private Transform m_Transform;

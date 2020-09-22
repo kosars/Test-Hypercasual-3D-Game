@@ -10,7 +10,8 @@ public class DestroyableObject : MonoBehaviour
 
     private bool isTriggered;
     private float selfDestroyTimer = 15f;
-    private float delayBeforeMove = 1f;
+    private float delayBeforeMove = 1f / (BallMovement.moveSpeed / 5f); // (1 second / (player.moveSpeed/5f))
+    private float moveSpeed = 10f * (BallMovement.moveSpeed / 5f);
 
     private void Start()
     {
@@ -22,14 +23,14 @@ public class DestroyableObject : MonoBehaviour
     {
         if (!isTriggered)
             return;
-        if ((double)delayBeforeMove > 0.0)
+        if (delayBeforeMove > 0.0)
         {
             delayBeforeMove -= Time.deltaTime;
         }
         else
         {
-            if ((double)selfDestroyTimer < 0.0)
-                Object.Destroy((Object)gameObject);
+            if (selfDestroyTimer < 0.0)
+                Destroy(gameObject);
             MoveChildRecursive(gameObject);
             selfDestroyTimer -= Time.deltaTime;
         }
@@ -44,13 +45,13 @@ public class DestroyableObject : MonoBehaviour
 
     private void CollectChildRBRecursive(GameObject obj)
     {
-        if ((Object)null == (Object)obj)
+        if (null == obj)
             return;
         foreach (Transform transform in obj.transform)
         {
-            if ((Object)null == (Object)transform)
+            if (null == transform)
                 break;
-            if ((bool)(Object)transform.gameObject.GetComponent<Rigidbody>())
+            if (transform.gameObject.GetComponent<Rigidbody>())
                 rbChildrens.Add(transform.gameObject.GetComponent<Rigidbody>());
             CollectChildRBRecursive(transform.gameObject);
         }
@@ -62,9 +63,9 @@ public class DestroyableObject : MonoBehaviour
             return;
         foreach (Rigidbody rigidbody in list)
         {
-            if (!((Object)null == (Object)rigidbody))
+            if (!(null == rigidbody))
             {
-                Vector3 position = Vector3.MoveTowards(rigidbody.position, colletor.position, 10f * Time.deltaTime);
+                Vector3 position = Vector3.MoveTowards(rigidbody.position, colletor.position, moveSpeed * Time.deltaTime);
                 rigidbody.MovePosition(position);
             }
         }
@@ -72,17 +73,17 @@ public class DestroyableObject : MonoBehaviour
 
     private void MoveChildRecursive(GameObject obj)
     {
-        if ((Object)null == (Object)obj)
+        if (null == obj)
             return;
         foreach (Transform transform in obj.transform)
         {
-            if (!((Object)null == (Object)transform))
+            if (!(null == transform))
             {
                 Rigidbody component;
                 if (transform.gameObject.TryGetComponent<Rigidbody>(out component))
                 {
                     component.isKinematic = true;
-                    Vector3 position = Vector3.MoveTowards(component.position, colletor.position, 10f * Time.deltaTime);
+                    Vector3 position = Vector3.MoveTowards(component.position, colletor.position, moveSpeed * Time.deltaTime);
                     component.MovePosition(position);
                 }
                 MoveChildRecursive(transform.gameObject);
