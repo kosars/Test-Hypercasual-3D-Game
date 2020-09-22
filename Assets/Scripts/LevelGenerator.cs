@@ -7,23 +7,28 @@ public class LevelGenerator : MonoBehaviour
     public levelObject[] spawnObj;
     [SerializeField]
     public GameObject endOfLevel;
+    [SerializeField]
+    private Transform level;
 
-    private float spawnHight;
+    private float spawnHight = 2f;
     private float spawnOffset = BallMovement.moveSpeed;
     private float lastSpawnPosition;
     private int targetScore;
-    private Transform m_Transform;
+    /*private Transform m_Transform;*/
 
-    private void Start()
+
+    private void Awake()
     {
-        m_Transform = GameObject.Find("Ball").GetComponent<Transform>();
-        spawnHight = m_Transform.position.y;
+        /*m_Transform = GameObject.Find("Ball").GetComponent<Transform>();
+        spawnHight = m_Transform.position.y;*/
         SpawnSingle(0, lastSpawnPosition + spawnOffset);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 25f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 50f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 75f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 100f);
+        SpawnSingle(1, lastSpawnPosition + spawnOffset);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 100f);
+        SpawnCircleRow(1, 4, lastSpawnPosition + spawnOffset, 0f, 30f);
         SpawnRow(0, 5, lastSpawnPosition + spawnOffset);
         SpawnRow(0, 5, lastSpawnPosition + spawnOffset, 30f, 15f);
         GameObject.Find("Score").GetComponent<Score>().TargetScore = targetScore;
@@ -34,7 +39,10 @@ public class LevelGenerator : MonoBehaviour
     {
         Vector3 position = new Vector3(0.0f, spawnHight, zPosition);
         Quaternion rotation = Quaternion.Euler(Vector3.forward);
-        Instantiate<GameObject>(spawnObj[index].obj, position, rotation);
+
+        Transform t = Instantiate(spawnObj[index].obj, position, rotation).transform;
+        t.SetParent(level);
+
         targetScore += spawnObj[index].pieces;
     }
 
@@ -42,7 +50,11 @@ public class LevelGenerator : MonoBehaviour
     {
         Vector3 position = new Vector3(0.0f, spawnHight, zPosition);
         Quaternion rotation = Quaternion.Euler(Vector3.forward);
-        RotateObject(Instantiate<GameObject>(spawnObj[index].obj, position, rotation).transform, rotateAngle);
+
+        Transform t = Instantiate(spawnObj[index].obj, position, rotation).transform;
+        RotateObject(t, rotateAngle);
+        t.SetParent(level);
+
         targetScore += spawnObj[index].pieces;
     }
 
@@ -85,6 +97,23 @@ public class LevelGenerator : MonoBehaviour
             rotateAngle += rotateSpiralAngle;
         }
         lastSpawnPosition = zPosition;
+    }
+
+    private void SpawnCircleRow(
+      int index,
+      int objectsNumber,
+      float zStartPosition,
+      float startRotateAngle,
+      float rotateSpiralAngle)
+    {
+        float zPosition = zStartPosition;
+        float rotateAngle = startRotateAngle;
+        for (int index1 = 0; index1 < objectsNumber; ++index1)
+        {
+            SpawnObject(index, zPosition, rotateAngle);
+            rotateAngle += rotateSpiralAngle;
+        }
+        lastSpawnPosition = zStartPosition;
     }
 
     private void SpawnTrigger(GameObject obj, float zPosition)

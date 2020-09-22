@@ -31,8 +31,6 @@ public class BallMovement : MonoBehaviour
 
         Debug.DrawLine(m_Rigidbody.position, Vector3.forward * m_Rigidbody.position.z, Color.red);
         Debug.DrawLine(Vector3.up * 2, Vector3.forward * m_Rigidbody.position.z, Color.green);
-
-
     }
 
     void MoveBall()
@@ -51,10 +49,6 @@ public class BallMovement : MonoBehaviour
 
     }
 
-    void RotateAroundCylinder()
-    {
-        m_Transform.RotateAround(Vector3.zero, Vector3.forward, rotateDirection * rotateSpeed * Time.deltaTime);
-    }
     private void CirclePositionUpdate()
     {
         currAngle += -RotateDirection * rotationSpeed * Time.deltaTime; 
@@ -62,6 +56,10 @@ public class BallMovement : MonoBehaviour
         float y = Mathf.Sin(currAngle) * rotationRadius;
 
         circlePosition = new Vector3(x, y, 0f);
+    }
+    void RotateAroundCylinder()
+    {
+        m_Transform.RotateAround(Vector3.zero, Vector3.forward, rotateDirection * rotateSpeed * Time.deltaTime);
     }
     public float RotateDirection
     {

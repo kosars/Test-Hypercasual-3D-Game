@@ -6,10 +6,11 @@ public class EndOfLevel : MonoBehaviour
 {
     public GameObject star;
     public GameObject piece;
-    private GameMenu m_GameMenu;
+    public GameMenu m_GameMenu;
+
     private int starsCount;
     private Transform cameraTransform;
-    private bool isEnd;
+   // private bool isEnd;
     private Vector3 starSpawnpoint;
     private Vector3[] starsCoords = new Vector3[3]
     {
@@ -34,7 +35,7 @@ public class EndOfLevel : MonoBehaviour
 
     private void EndLevel()
     {
-        isEnd = true;
+        //isEnd = true;
         m_GameMenu.EndGame();
 
         GameObject ball = GameObject.Find("Ball");
