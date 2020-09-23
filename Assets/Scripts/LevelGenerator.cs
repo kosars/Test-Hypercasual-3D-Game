@@ -24,7 +24,6 @@ public class LevelGenerator : MonoBehaviour
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 50f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 75f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 100f);
-        SpawnSingle(1, lastSpawnPosition + spawnOffset);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, 100f);
         SpawnCircleRow(1, 3, lastSpawnPosition + spawnOffset, 0f, 30f);
         SpawnRow(0, 5, lastSpawnPosition + spawnOffset);
@@ -33,18 +32,25 @@ public class LevelGenerator : MonoBehaviour
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -25f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -50f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -75f);
-        SpawnSingle(0, lastSpawnPosition + spawnOffset, -25f);
-        SpawnSingle(0, lastSpawnPosition + spawnOffset, 0f);
-        SpawnRow(0, 5, lastSpawnPosition + spawnOffset, 30f, 5f);
-        SpawnCircleRow(1, 5, lastSpawnPosition + spawnOffset, 0f, 36f);
-        SpawnSingle(0, lastSpawnPosition + spawnOffset, -75f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -50f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -25f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 0f);
+
+        SpawnRow(0, 5, lastSpawnPosition + spawnOffset, 30f, 5f);
+        SpawnCircleRow(1, 5, lastSpawnPosition + spawnOffset, 0f, 36f);
+
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 75f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 50f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 25f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 25f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, 0f);
         SpawnSingle(0, lastSpawnPosition + spawnOffset, -25f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, -50f);
+        SpawnSingle(0, lastSpawnPosition + spawnOffset, -75f);
 
         SpawnTrigger(endOfLevel, lastSpawnPosition + spawnOffset);
 
-        Score.TargetScore = Mathf.RoundToInt(targetScore*1.25f);
+        Score.TargetScore = Mathf.RoundToInt(targetScore*1.5f);
     }
 
     private void SpawnObject(int index, float zPosition)

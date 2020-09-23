@@ -10,7 +10,17 @@ public class GameMenu : MonoBehaviour
     [SerializeField] public Score m_Score;
 
 
-    private void Awake() => PauseGame();
+    private void Awake() 
+    {
+        //Set screen size for Standalone
+#if UNITY_STANDALONE
+                int res = Screen.height / 16;
+                Screen.SetResolution(res*9, Screen.height, true);
+                Screen.fullScreen = true;
+        #endif
+        PauseGame();
+
+    }
 
     public void StartGame()
     {

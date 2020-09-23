@@ -42,6 +42,8 @@ public class EndOfLevel : MonoBehaviour
         m_GameMenu.EndGame();
 
         GameObject ball = GameObject.Find("Ball");
+        GameObject.Find("SpeedUp").SetActive(false);
+
         ball.GetComponent<BallEnergy>().enabled = false;
         foreach (Transform transform in ball.transform)
             transform.SetParent(null, true);
