@@ -10,7 +10,7 @@ public class BallEnergy : MonoBehaviour
     private float standartScale = 1f;
     string voronoiName;
     string noiseName;
-    private float standartVoronoi = 3.6f;
+    private float standartVoronoi = 1.6f; //3.6
     private float standartNoise = 2f;
 
 
@@ -58,7 +58,6 @@ public class BallEnergy : MonoBehaviour
             }
         }
     }
-
     private void SetSize(float value)
     {
         m_Transform.localScale = Vector3.one * standartScale * value;
@@ -66,7 +65,7 @@ public class BallEnergy : MonoBehaviour
 
     private void SetLook(float value)
     {
-        float voronoi = standartVoronoi + (1f - value) * 2f;
+        float voronoi = standartVoronoi + (1f - value) * 4f;
         float noise = standartNoise + (1f - value) * 2f;
         m_Renderer.sharedMaterial.SetFloat(voronoiName, voronoi);
         m_Renderer.sharedMaterial.SetFloat(noiseName, noise);

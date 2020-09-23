@@ -40,7 +40,7 @@ public class BallMovement : MonoBehaviour
         Vector3 pos = new Vector3(
             circlePosition.x,
             circlePosition.y,
-            m_Rigidbody.position.z + moveSpeed * m_Multiplier.multiplier * Time.deltaTime);
+            m_Rigidbody.position.z + moveSpeed * m_Multiplier.SpeedMultiplier * Time.deltaTime);
         m_Rigidbody.MovePosition(pos);
 
         float angle = Mathf.Acos(m_Rigidbody.position.x / rotationRadius) * Mathf.Rad2Deg;

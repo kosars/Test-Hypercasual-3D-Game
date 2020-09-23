@@ -12,20 +12,25 @@ public class GameMenu : MonoBehaviour
 
     private void Awake() => PauseGame();
 
-    public  void StartGame()
+    public void StartGame()
     {
+        multiplierUI.SetActive(true);
         startMenuUI.SetActive(false);
         endMenuUI.SetActive(false);
         Time.timeScale = 1f;
     }
 
-    public  void PauseGame()
+    public void PauseGame()
     {
         startMenuUI.SetActive(true);
         Time.timeScale = 0.0f;
     }
 
-    public  void EndGame() => endMenuUI.SetActive(true);
+    public void EndGame() 
+    { 
+        multiplierUI.SetActive(false);
+        endMenuUI.SetActive(true); 
+    }
 
     public  void RestartGame()
     {
