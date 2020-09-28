@@ -13,7 +13,7 @@ public class GameMenu : MonoBehaviour
     private void Awake() 
     {
         //Set screen size for Standalone
-#if UNITY_STANDALONE
+                #if UNITY_STANDALONE
                 int res = Screen.height / 16;
                 Screen.SetResolution(res*9, Screen.height, true);
                 Screen.fullScreen = true;
@@ -42,7 +42,7 @@ public class GameMenu : MonoBehaviour
         endMenuUI.SetActive(true); 
     }
 
-    public  void RestartGame()
+    public void RestartGame()
     {
         startMenuUI.SetActive(false);
         endMenuUI.SetActive(false);
@@ -51,7 +51,7 @@ public class GameMenu : MonoBehaviour
         SceneManager.LoadScene("SampleScene");
     }
 
-    public  void Defeat()
+    public void Defeat()
     {
         restartMenuUI.SetActive(true);
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 public class Score : MonoBehaviour
 {
     [SerializeField] private Multiplier m_Multiplier;
-    [SerializeField] private TextMeshProUGUI m_TextMeshPro;
+    [SerializeField] private TextMeshProUGUI m_TextMeshPro; //TODO ScoreUI Script
     private int currScore;
     private static int targScore;
     

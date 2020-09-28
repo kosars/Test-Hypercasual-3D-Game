@@ -7,6 +7,7 @@ public class BallEnergy : MonoBehaviour
     private float currentEnergy = 1f;
     private float currentMaxEnergy = 1f;
     private float energyLostPerSec = 0.25f;
+
     private float standartScale = 1f;
     string voronoiName;
     string noiseName;

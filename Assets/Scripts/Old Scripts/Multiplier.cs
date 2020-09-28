@@ -4,7 +4,7 @@ using UnityEngine;
 public class Multiplier : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI m_TextMeshPro;
-    [SerializeField] private GameObject speedUP;
+    [SerializeField] private GameObject speedUP; //TODO: SpeedUpUI script
 
     private float m_Multiplier = 1f;
     private float m_SpeedMultiplier = 1f;
