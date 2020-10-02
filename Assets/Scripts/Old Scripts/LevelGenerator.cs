@@ -50,7 +50,7 @@ public class LevelGenerator : MonoBehaviour
 
         SpawnTrigger(endOfLevel, lastSpawnPosition + spawnOffset);
 
-        Score.TargetScore = Mathf.RoundToInt(targetScore*1.5f);
+        PlayerScore.TargetScore = Mathf.RoundToInt(targetScore*1.5f);
     }
 
     private void SpawnObject(int index, float zPosition)

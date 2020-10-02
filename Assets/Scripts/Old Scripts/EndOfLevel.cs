@@ -38,7 +38,6 @@ public class EndOfLevel : MonoBehaviour
 
     private void EndLevel()
     {
-        //isEnd = true;
         m_GameMenu.EndGame();
 
         GameObject ball = GameObject.Find("Ball");
@@ -57,11 +56,6 @@ public class EndOfLevel : MonoBehaviour
          
         StartCoroutine(spawnStars());
     }
-
-    /*private void Update()
-    {
-        int num = isEnd ? 1 : 0;
-    }*/
 
     private void getFigure(GameObject parent)
     {

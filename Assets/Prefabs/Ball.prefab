@@ -4941,9 +4941,13 @@ GameObject:
   - component: {fileID: 1784730273308347065}
   - component: {fileID: 1784730273308347066}
   - component: {fileID: 1784730273308347067}
-  - component: {fileID: 1784730273308347079}
-  - component: {fileID: 7006188546489213694}
-  - component: {fileID: 1289270946070745370}
+  - component: {fileID: 3211195426250837795}
+  - component: {fileID: 7587250944262163980}
+  - component: {fileID: 5011935714477377913}
+  - component: {fileID: 1483430743363634421}
+  - component: {fileID: 6504728045416651344}
+  - component: {fileID: 3612416612319721086}
+  - component: {fileID: 7379113915644324798}
   m_Layer: 0
   m_Name: Ball
   m_TagString: NotDestroy
@@ -5048,7 +5052,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 48
   m_CollisionDetection: 3
---- !u!114 &1784730273308347079
+--- !u!114 &3211195426250837795
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5057,12 +5061,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784730273308347069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 949f20eb6cd818244845b0f3a56b20b9, type: 3}
+  m_Script: {fileID: 11500000, guid: ce48ffd9862f0a74780e1ac419760811, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Multiplier: {fileID: 0}
-  m_Transform: {fileID: 1784730273308347068}
---- !u!114 &7006188546489213694
+  _playerMovement: {fileID: 1483430743363634421}
+--- !u!114 &7587250944262163980
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5071,15 +5074,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784730273308347069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f696b15572c24b348ac16617f14bdb8b, type: 3}
+  m_Script: {fileID: 11500000, guid: 8aaf625f66884794bac9e90f31cf53c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  beam: {fileID: 1029067796173031740}
-  fire: {fileID: 1464201760857674233}
-  m_Multiplier: {fileID: 0}
-  m_BallEnergy: {fileID: 0}
-  m_GameMenu: {fileID: 0}
---- !u!114 &1289270946070745370
+--- !u!114 &5011935714477377913
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5088,9 +5086,63 @@ MonoBehaviour:
   m_GameObject: {fileID: 1784730273308347069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 829517bd11cc3b740ac489ea7af4bc0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 759fcbd152c2547488abc14273599cc4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1483430743363634421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784730273308347069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cad870241af12d4e8f2e7ddfb27d193, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplier: {fileID: 6504728045416651344}
+  _rigidbody: {fileID: 1784730273308347067}
+--- !u!114 &6504728045416651344
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784730273308347069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a042eef08b55cf4294eef3b45e0c328, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3612416612319721086
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784730273308347069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92239ba6e1f213d45b18171e919dfd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _fireTransform: {fileID: 1464201760857674233}
+  _playerRenderer: {fileID: 1784730273308347065}
+  _beamTransform: {fileID: 1029067796173031740}
+--- !u!114 &7379113915644324798
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1784730273308347069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b09efa51f5e49ce4d929e157a7984199, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _multiplier: {fileID: 6504728045416651344}
 --- !u!1 &1784730273388724520
 GameObject:
   m_ObjectHideFlags: 0

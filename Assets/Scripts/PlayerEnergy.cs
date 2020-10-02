@@ -26,20 +26,21 @@ public class PlayerEnergy : MonoBehaviour
         }
     }
 
-    void FixedUpdate()
-    {
-        Energy -= _energyLostPerSec * Time.deltaTime;
-    }
+    void FixedUpdate() => Energy -= _energyLostPerSec * Time.deltaTime; 
 
-    //TODO UpEnergy PlayerCollision.OnDestroyableObjectCollect
     private void OnEnable()
     {
-        PlayerCollision.OnPlayerHit += () => HandleHit();
+        PlayerCollision.OnPlayerHit += HandleHit;
+        DestroyableObjectTrigger.OnDestroyableObjectCollect += HandleDestroyableObjectCollect;
+        LevelCompleteTrigger.OnLevelComplete += HandleLevelComplete;
     }
 
     private void OnDisable()
     {
-        PlayerCollision.OnPlayerHit -= () => HandleHit();
+        PlayerCollision.OnPlayerHit -= HandleHit;
+        DestroyableObjectTrigger.OnDestroyableObjectCollect -= HandleDestroyableObjectCollect;
+        LevelCompleteTrigger.OnLevelComplete -= HandleLevelComplete;
+
     }
 
     public void UpEnergy(float value)
@@ -58,13 +59,9 @@ public class PlayerEnergy : MonoBehaviour
             Energy -= value;
     }
 
-    private void HandleHit()
-    {
-        DownEnergy(0.5f);
-    }
+    private void HandleHit() => DownEnergy(0.5f);
 
-    private void HandleDestroyableObjectCollect()
-    {
-        UpEnergy(0.25f);
-    }
+    private void HandleDestroyableObjectCollect() => UpEnergy(0.25f);
+
+    private void HandleLevelComplete() => this.enabled = false;
 }

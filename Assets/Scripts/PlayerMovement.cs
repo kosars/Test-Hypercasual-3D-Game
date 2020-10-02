@@ -7,21 +7,29 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private PlayerMultiplier _multiplier; 
     [SerializeField] private Rigidbody _rigidbody;
 
-    public static float _moveSpeed = 10f; //TODO: Move the static data to the Player Data
-    public static float _rotationSpeed = 5f;
-    public static float _rotationRadius = 2f;
-    float _currAngle = (Mathf.PI / 2) * Mathf.Rad2Deg;
+    private static float _moveSpeed = 10f; //TODO: Move the static data to the Player Data
+    private static float _rotationSpeed = 5f;
+    private static float _rotationRadius = 2f;
+    private float _currAngle = (Mathf.PI / 2) * Mathf.Rad2Deg;
 
-    private void OnEnable()
+    public static float MoveSpeed
     {
-        PlayerCollision.OnPlayerHit += HandleFullEnergyLost;
+        get => _moveSpeed;
+        private set => _moveSpeed = value;
     }
 
-    private void OnDisable()
+    public static float RotationSpeed
     {
-        PlayerCollision.OnPlayerHit -= HandleFullEnergyLost;
+        get => _rotationSpeed;
+        private set => _rotationSpeed = value;
     }
-     
+
+    public static float RotationRadius
+    {
+        get => _rotationRadius;
+        private set => _rotationRadius = value;
+    }
+
     public void MoveSpiral(float rotateDirection)
     {
         Vector3 circlePosition = UpdateSpiralPosition(rotateDirection);
@@ -47,10 +55,5 @@ public class PlayerMovement : MonoBehaviour
         float y = Mathf.Sin(_currAngle) * _rotationRadius;
 
         return new Vector3(x, y, 0f);
-    }
-
-    private void HandleFullEnergyLost()
-    {
-        this.enabled = false; //if we have no energy than we cannot move
     }
 }

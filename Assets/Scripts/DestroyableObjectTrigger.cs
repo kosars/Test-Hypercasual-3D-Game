@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DestroyableObjectTrigger : MonoBehaviour
 {
-    public static event Action OnDestroyableObjectCollect; //TODO DestroyableObject Logic
+    public static event Action OnDestroyableObjectCollect;
 
     [SerializeField] private DestroyableObjectMovement _destroyableObjectMovement;
     [SerializeField] private GameObject _scoreText;
@@ -21,9 +21,9 @@ public class DestroyableObjectTrigger : MonoBehaviour
         if (!(other.gameObject.name == "Ball"))
             return;
         _destroyableObjectMovement.enabled = true;
-        OnDestroyableObjectCollect?.Invoke(); //TODO: AddScore AddEnergy AddMultiplier Logic
-        //TODO: ScoreFadingFromObject
-        //_scoreText.SetActive(true);
-        //_scoreText.GetComponent<TextMeshPro>().text = (100 * PlayerMultiplier.Multiplier).ToString();
+        OnDestroyableObjectCollect?.Invoke(); 
+        _scoreText.SetActive(true);
+        _scoreText.GetComponent<TextMeshPro>().text = PlayerScore.DeltaScore.ToString();
+        this.enabled = false;
     }
 }

@@ -2,5 +2,9 @@
 
 public class ObjectDestroyer : MonoBehaviour
 {
-    private void OnTriggerEnter(Collider other) => Object.Destroy((Object)other.gameObject);
+    private void OnEnable() => LevelCompleteTrigger.OnLevelComplete += HandleLevelComplete;
+    private void OnDisable() => LevelCompleteTrigger.OnLevelComplete -= HandleLevelComplete;
+
+    private void HandleLevelComplete() => this.gameObject.SetActive(false);
+    private void OnTriggerEnter(Collider other) => Destroy(other.gameObject);
 }
