@@ -2242,18 +2242,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1484040821}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f802e5e9ee02354696536a4a0f0eb04, type: 3}
+  m_Script: {fileID: 11500000, guid: d4a2c1d2c840cda4b864424c4ae95b6d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnObj:
-  - obj: {fileID: 552390766885163163, guid: 9c8153892888c9649b868ac08ec2f05d, type: 3}
-    objLenght: 0.5
-    pieces: 125
-  - obj: {fileID: 7550515109559694679, guid: 17f05a604af004d44886bb63d9073c7d, type: 3}
-    objLenght: 0.5
-    pieces: 0
-  endOfLevel: {fileID: 4158659779927919935, guid: 10ea5489d16f8014088f973bbbbe654c, type: 3}
-  level: {fileID: 1850850174}
+  _currentLevel: {fileID: 11400000, guid: f47a297f393921841b567eaed758a72e, type: 2}
+  _levelCompleteTrigger: {fileID: 4158659779927919935, guid: 10ea5489d16f8014088f973bbbbe654c, type: 3}
+  _levelTransform: {fileID: 1850850174}
 --- !u!4 &1484040823
 Transform:
   m_ObjectHideFlags: 0

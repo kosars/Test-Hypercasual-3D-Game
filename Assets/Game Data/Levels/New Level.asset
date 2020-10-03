@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: Level 0
-  m_EditorClassIdentifier: Assembly-CSharp::LevelData
+  m_Script: {fileID: 11500000, guid: e0b2b127c8dfe2b4c921a1227361d202, type: 3}
+  m_Name: New Level
+  m_EditorClassIdentifier: 
   _number: 0
   _targetScore: 4000
   _gameObjects: {fileID: 11400000, guid: e817e703f421b124f9b37bda6f7bfe2b, type: 2}
@@ -25,7 +25,7 @@ MonoBehaviour:
   - _gameObjectsIndex: 0
     _levelObjectsAmount: 1
     _rotationStartAngle: 100
-    _rotationBeetweenAngle: 0
+    _rotationBeetweenAngle: 10
     _startOffset: 10
     _beetweenOffset: 0
   - _gameObjectsIndex: 1
@@ -39,16 +39,16 @@ MonoBehaviour:
     _rotationStartAngle: 0
     _rotationBeetweenAngle: 0
     _startOffset: 10
-    _beetweenOffset: 1
+    _beetweenOffset: 10
   - _gameObjectsIndex: 0
     _levelObjectsAmount: 4
     _rotationStartAngle: 0
     _rotationBeetweenAngle: -25
     _startOffset: 10
     _beetweenOffset: 10
-  - _gameObjectsIndex: 0
-    _levelObjectsAmount: 3
-    _rotationStartAngle: -50
+  - _gameObjectsIndex: 4
+    _levelObjectsAmount: 10
+    _rotationStartAngle: -75
     _rotationBeetweenAngle: 25
     _startOffset: 10
     _beetweenOffset: 10
@@ -65,14 +65,8 @@ MonoBehaviour:
     _startOffset: 10
     _beetweenOffset: 0
   - _gameObjectsIndex: 0
-    _levelObjectsAmount: 4
+    _levelObjectsAmount: 7
     _rotationStartAngle: 75
-    _rotationBeetweenAngle: -25
-    _startOffset: 10
-    _beetweenOffset: 10
-  - _gameObjectsIndex: 0
-    _levelObjectsAmount: 4
-    _rotationStartAngle: 0
     _rotationBeetweenAngle: -25
     _startOffset: 10
     _beetweenOffset: 10
