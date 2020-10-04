@@ -6,6 +6,7 @@ public class LevelGeneratorNew : MonoBehaviour
 {
     [SerializeField] private LevelData _currentLevel;
     [SerializeField] private GameObject _levelCompleteTrigger;
+    [SerializeField] private GameObject _starSpawner;
     [SerializeField] private Transform _levelTransform;
 
     private float _spawnHight = 2f;//TODO: MAKE FROM GAME SETTINGS ScriptableObject
@@ -15,12 +16,9 @@ public class LevelGeneratorNew : MonoBehaviour
 
     private void Awake()
     {
-        //TODO: GET DATA FORM LEVEL
         GameObject[] gameObjects = _currentLevel.GameObjects;
         List<ObjectsRow> levelObjects = _currentLevel.LevelObjects;
-        //TODO: SPAWN OBJECTS
         GenerateLevel(levelObjects, gameObjects);
-        //TODO: SET THE TARGET SCORE
         PlayerScore.TargetScore = _currentLevel.TargetScore;
 
     }
@@ -35,7 +33,9 @@ public class LevelGeneratorNew : MonoBehaviour
             SpawnRow(objectsRow, gameObjects);
         }
 
-        SpawnTrigger(_levelCompleteTrigger, _lastSpawnPosition);
+        SpawnTrigger(_levelCompleteTrigger, _lastSpawnPosition + 5f);
+        SpawnTrigger(_starSpawner, _lastSpawnPosition + 5f);
+
     }
 
     private void SpawnObject(GameObject objectPrefab, float position, float rotation)

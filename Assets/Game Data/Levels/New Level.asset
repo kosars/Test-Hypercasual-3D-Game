@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: New Level
   m_EditorClassIdentifier: 
   _number: 0
-  _targetScore: 6000
+  _targetScore: 10000
   _gameObjects: {fileID: 11400000, guid: e817e703f421b124f9b37bda6f7bfe2b, type: 2}
   _levelObjects:
   - _gameObjectsIndex: 0

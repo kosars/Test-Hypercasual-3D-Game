@@ -5,6 +5,8 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private PlayerMovement _playerMovement;
+    [SerializeField] private Transform _mainCamera;
+
 
     private void FixedUpdate()
      {
@@ -15,17 +17,26 @@ public class Player : MonoBehaviour
     private void OnEnable()
     {
         PlayerEnergy.OnFullEnergyLost += HandleFullEnergyLost;
+        LevelCompleteTrigger.OnLevelComplete += HandleLevelComplete;
     }
 
     private void OnDisable()
     {
         PlayerEnergy.OnFullEnergyLost -= HandleFullEnergyLost;
+        LevelCompleteTrigger.OnLevelComplete -= HandleLevelComplete;
     }
+
     private void HandleFullEnergyLost()
     {
-        //DISABLE CHARACTERMOVEMENT WHEN DEAD
         _playerMovement.enabled = false;
-        //DISABLE CHARACTERINPUT WHEN DEAD
         this.enabled = false;
+    }
+
+    private void HandleLevelComplete()
+    {
+        _mainCamera.SetParent(null, true);
+        _mainCamera.position = new Vector3(0.0f, 5f, _mainCamera.position.z);
+        Quaternion quaternion = Quaternion.Euler(10f, 0.0f, 0.0f);
+        _mainCamera.rotation = quaternion;
     }
 }
