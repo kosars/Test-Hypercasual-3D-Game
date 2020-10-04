@@ -4,28 +4,28 @@ using UnityEngine;
 
 public class StarSpawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _starPrefab;
     [SerializeField] private GameObject _piecePrefab;
+    [SerializeField] private StarSpawnerSettings _starSpawnerSettings;
 
-    private Vector3[] _starsCoords = new Vector3[3]
-    {
-        new Vector3(-2f, 7f, 12f),
-        new Vector3(0f, 8f, 12f),
-        new Vector3(2f, 7f, 12f)
-    };
-    private Vector3[] starPieceCoords;
+    private Vector3[] _starsCoords;
+    private Vector3[] _starPieceCoords;
+    private Vector3 _spawnPoint;
+    private float _pieceSpeed;
 
     private void OnEnable() => LevelCompleteTrigger.OnLevelComplete += HandleLevelComplete;
     private void OnDisable() => LevelCompleteTrigger.OnLevelComplete -= HandleLevelComplete;
+    private void Awake()
+    {
+        _starsCoords = _starSpawnerSettings.StarsCoords; //TODO: IT WORKS BUT FOR SOME REASONS  TROWS NULLREFERENCE
+        _starPieceCoords = _starSpawnerSettings.StarPieceCoords;
+        _pieceSpeed = _starSpawnerSettings.PieceMoveSpeed; 
+        _spawnPoint = _starSpawnerSettings.SpawnPoint;
+    }
 
     private void HandleLevelComplete()
     {
-        //TODO: MAKE DEPENDENCY INJECTION
-        GetFigure(_starPrefab);
-        Vector3 starSpawnpoint = transform.position;
         int starsCount = CountStars();
-        //
-        StartCoroutine(SpawnStars(starSpawnpoint, starsCount));
+        StartCoroutine(SpawnStars(transform.position, starsCount));
     }
 
     private IEnumerator SpawnStars(Vector3 starSpawnpoint, int starsCount)
@@ -39,32 +39,18 @@ public class StarSpawner : MonoBehaviour
 
     private IEnumerator SpawnStarPieces(Vector3 starSpawnpoint, Vector3 starCoords)
     {
-        for (int index = 0; index < starPieceCoords.Length; ++index)
+        for (int index = 0; index < _starPieceCoords.Length; ++index)
         {
-            Vector3 vector3 = starPieceCoords[index];
+            Vector3 vector3 = _starPieceCoords[index];
             Quaternion rotation = Quaternion.Euler(Vector3.forward);
             GameObject gameObject = Instantiate(_piecePrefab, starSpawnpoint, rotation);
-
-            gameObject.GetComponent<StarPiece>().moveTo = vector3 + starCoords + Vector3.forward; // * cameraTransform.position.z
+            StarPieceMovement starPieceMovement = gameObject.GetComponent<StarPieceMovement>();
+            starPieceMovement.MoveSpeed = _pieceSpeed;
+            starPieceMovement.MoveTo = transform.position + vector3 + starCoords; // * cameraTransform.position.z
             gameObject.transform.parent = this.gameObject.transform;
             yield return new WaitForSeconds(0.01f);
         }
     }
-
-    private void GetFigure(GameObject parent)
-    {
-        List<Vector3> vector3List = new List<Vector3>();
-        if (parent == null)
-            return;
-        foreach (Transform transform in parent.transform)
-        {
-            if (null == transform)
-                return;
-            vector3List.Add(transform.gameObject.transform.position);
-        }
-        starPieceCoords = vector3List.ToArray();
-    }
-
     private int CountStars()
     {
         float num = (PlayerScore.CurrentScore / (PlayerScore.TargetScore / 100));

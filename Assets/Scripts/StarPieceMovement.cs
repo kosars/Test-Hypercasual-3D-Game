@@ -14,6 +14,12 @@ public class StarPieceMovement : MonoBehaviour
         set => _movePoint = value;
     }
 
+    public float MoveSpeed
+    {
+        get => _moveSpeed;
+        set => _moveSpeed = value;
+    }
+
     private void Awake()
     {
         if (null == _rigidbody)

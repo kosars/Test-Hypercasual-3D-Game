@@ -8,9 +8,11 @@ public class PlayerEnergy : MonoBehaviour
     public static event Action OnFullEnergyLost;
     public static event Action<float> OnEnergyChange;
 
-    private float _currentEnergy = 1f;
-    private float _currentMaxEnergy = 1f; //TODO Make all data get from the ScriptableObject
-    private float _energyLostPerSec = 0.25f;
+    [SerializeField] private EnergySettings _energySettings;
+
+    private float _currentEnergy;
+    private float _currentMaxEnergy;
+    private float _energyLostPerSec;
 
     public float Energy
     {
@@ -24,6 +26,13 @@ public class PlayerEnergy : MonoBehaviour
                 OnFullEnergyLost?.Invoke();
             }
         }
+    }
+
+    private void Awake()
+    {
+        _currentMaxEnergy = _energySettings.MaxEnergy;
+        _currentEnergy = _currentMaxEnergy;
+        _energyLostPerSec = _energySettings.EnergyLostPerSec;
     }
 
     void FixedUpdate() => Energy -= _energyLostPerSec * Time.deltaTime; 

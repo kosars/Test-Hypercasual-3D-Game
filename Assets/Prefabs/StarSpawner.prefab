@@ -43,5 +43,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce925f770b305e94ba0ae0aa194beffb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _starPrefab: {fileID: 6794555455596171295, guid: b60df94d2f68e294f8318ff503d91058, type: 3}
   _piecePrefab: {fileID: 9141054950124247716, guid: 7e9d2dd1bc853f043b5146d3bbf8ae7e, type: 3}
+  _starSpawnerSettings: {fileID: 11400000, guid: 48ad49e8b4aadef4e82446bb483dcd2b, type: 2}
